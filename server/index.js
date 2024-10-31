@@ -23,13 +23,16 @@ const ratingRoutes = require("./routes/ratingRoutes");
 
 const app = express();
 
+
 const port = process.env.PORT || 3001;
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,
-}));
+app.use(express.static(path.join(__dirname, "/client/dist")));
 
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
+
+app.use(cors())
 app.use(express.json());
 app.use(cookieParser());
 
@@ -37,6 +40,12 @@ const db = require("./models");
 
 app.get("/api", (req, res) => {
 	res.send(`Hello from port ${port}`);
+});
+
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 // routes
