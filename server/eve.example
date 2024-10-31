@@ -1,0 +1,21 @@
+PORT = 3001
+SECRET_KEY = sangkiplaimportantkey
+EMAIL = kiplangatsang08@gmail.com
+PASSWORD = 
+
+# cloudinary
+CLOUDINARY_NAME = vincentsang
+CLOUDINARY_API_KEY = 455286944547629
+CLOUDINARY_API_SECRET = 764okYVYwP9WOp5iXMKS7Oxbr7c
+
+# payment
+MPESA_CONSUMER_KEY = 8buVI5mYbbgi9GIkXphrM7OOZmJiHxEDugsWEQ3jUDUpd8st
+MPESA_CONSUMER_SECRET = CD7IVgGMDEO9bm2BAqxeALa195p01x9GAU6encciYdqcvjVlaKkQKqvW5KGEFsdu
+MPESA_PAYBILL = 174379
+MPESA_PASSKEY = bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919
+
+#    cloudinary.config({ 
+#         cloud_name: 'vincentsang', 
+#         api_key: '455286944547629', 
+#         api_secret: '<your_api_secret>' // Click 'View Credentials' below to copy your API secret
+#     });
