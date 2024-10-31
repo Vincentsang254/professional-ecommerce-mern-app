@@ -1,26 +1,34 @@
 export const registerFormControls = [
   {
-    name: "userName",
-    label: "User Name",
-    placeholder: "Enter your user name",
+    name: "name", // matches req.body.name
+    label: "Name", // Updated label to "Name"
+    placeholder: "Enter your name", // Updated placeholder to reflect the change
     componentType: "input",
     type: "text",
   },
   {
-    name: "email",
+    name: "email", // matches req.body.email
     label: "Email",
     placeholder: "Enter your email",
     componentType: "input",
     type: "email",
   },
   {
-    name: "password",
+    name: "password", // matches req.body.password
     label: "Password",
     placeholder: "Enter your password",
     componentType: "input",
     type: "password",
   },
+  {
+    name: "phoneNumber", // matches req.body.phoneNumber
+    label: "Phone Number", // Updated label for phone number
+    placeholder: "Enter your phone number", // Updated placeholder for phone number
+    componentType: "input",
+    type: "tel", // Type set to "tel" for phone number input
+  },
 ];
+
 
 export const loginFormControls = [
   {

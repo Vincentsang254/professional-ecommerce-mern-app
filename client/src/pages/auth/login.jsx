@@ -16,7 +16,17 @@ function AuthLogin() {
   const dispatch = useDispatch();
   const { toast } = useToast();
 
-  function onSubmit(event) {
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Submit form
+  const onSubmit = (event) => {
     event.preventDefault();
 
     dispatch(loginUser(formData)).then((data) => {
@@ -31,7 +41,7 @@ function AuthLogin() {
         });
       }
     });
-  }
+  };
 
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
@@ -53,7 +63,7 @@ function AuthLogin() {
         formControls={loginFormControls}
         buttonText={"Sign In"}
         formData={formData}
-        setFormData={setFormData}
+        setFormData={handleInputChange} // Use handleInputChange for input updates
         onSubmit={onSubmit}
       />
     </div>

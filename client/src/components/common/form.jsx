@@ -18,94 +18,69 @@ function CommonForm({
   buttonText,
   isBtnDisabled,
 }) {
-  function renderInputsByComponentType(getControlItem) {
-    let element = null;
-    const value = formData[getControlItem.name] || "";
+  function renderInputsByComponentType(controlItem) {
+    const value = formData[controlItem.name] || "";
 
-    switch (getControlItem.componentType) {
+    switch (controlItem.componentType) {
       case "input":
-        element = (
+        return (
           <Input
-            name={getControlItem.name}
-            placeholder={getControlItem.placeholder}
-            id={getControlItem.name}
-            type={getControlItem.type}
+            name={controlItem.name}
+            placeholder={controlItem.placeholder}
+            id={controlItem.name}
+            type={controlItem.type}
             value={value}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getControlItem.name]: event.target.value,
-              })
-            }
+            onChange={setFormData} // Use setFormData directly
           />
         );
 
-        break;
       case "select":
-        element = (
+        return (
           <Select
-            onValueChange={(value) =>
-              setFormData({
-                ...formData,
-                [getControlItem.name]: value,
-              })
+            onValueChange={(selectedValue) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                [controlItem.name]: selectedValue,
+              }))
             }
             value={value}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder={getControlItem.label} />
+              <SelectValue placeholder={controlItem.label} />
             </SelectTrigger>
             <SelectContent>
-              {getControlItem.options && getControlItem.options.length > 0
-                ? getControlItem.options.map((optionItem) => (
-                    <SelectItem key={optionItem.id} value={optionItem.id}>
-                      {optionItem.label}
-                    </SelectItem>
-                  ))
-                : null}
+              {controlItem.options?.map((optionItem) => (
+                <SelectItem key={optionItem.id} value={optionItem.id}>
+                  {optionItem.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         );
 
-        break;
       case "textarea":
-        element = (
+        return (
           <Textarea
-            name={getControlItem.name}
-            placeholder={getControlItem.placeholder}
-            id={getControlItem.id}
+            name={controlItem.name}
+            placeholder={controlItem.placeholder}
+            id={controlItem.id}
             value={value}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getControlItem.name]: event.target.value,
-              })
-            }
+            onChange={setFormData} // Use setFormData directly
           />
         );
-
-        break;
 
       default:
-        element = (
+        return (
           <Input
-            name={getControlItem.name}
-            placeholder={getControlItem.placeholder}
-            id={getControlItem.name}
-            type={getControlItem.type}
+            name={controlItem.name}
+            placeholder={controlItem.placeholder}
+            id={controlItem.name}
+            type={controlItem.type}
             value={value}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getControlItem.name]: event.target.value,
-              })
-            }
+            onChange={setFormData} // Use setFormData directly
           />
         );
-        break;
     }
-
-    return element;
   }
 
   return (
